@@ -72,7 +72,7 @@ const VoiceRSS = {
 
 function test() {
     VoiceRSS.speech({
-        key: '<API key>',
+        key: '01b93f3c21ba4a49bc288e9c601c0bb2',
         src: 'Hello, World!',
         hl: 'en-us',
         r: 0,
