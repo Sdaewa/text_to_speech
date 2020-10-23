@@ -91,14 +91,21 @@
 // test();
 
 async function getQuote() {
-    const apiUrl = 'https://sv443.net/jokeapi/v2/joke/Any?type=single';
+    const apiUrl = 'https://sv443.net/jokeapi/v2/joke/Any';
     try {
         const response = await fetch(apiUrl);
         const data = await response.json();
+        if (data.setup) {
+            let fullQuote = `${data.setup} --- ${data.delivery}`;
+            console.log(fullQuote);
+        } else {
+            console.log(data.joke);
+        }
         console.log(data)
     } catch (error) {
         console.log(error);
     };
 }
+
 
 getQuote()
