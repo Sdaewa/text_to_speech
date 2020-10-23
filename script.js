@@ -84,19 +84,22 @@ async function getQuote() {
         const data = await response.json();
         if (data.setup) {
             quote = `${data.setup} --- ${data.delivery}`;
-            quote;
             console.log(quote);
+            sayQuote(quote);
         } else {
             quote = data.joke;
             console.log(quote);
+            sayQuote(quote);
         }
         console.log(data)
+        sayQuote();
     } catch (error) {
         console.log(error);
     };
 
 
     function sayQuote(quote) {
+        console.log(quote)
         VoiceRSS.speech({
             key: '01b93f3c21ba4a49bc288e9c601c0bb2',
             src: quote,
@@ -107,7 +110,6 @@ async function getQuote() {
             ssml: false
         });
     }
-    sayQuote();
 }
 
-getQuote()
+getQuote();
