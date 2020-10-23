@@ -76,6 +76,9 @@ const VoiceRSS = {
     }
 };
 
+function toggleBtn() {
+    button.disabled = !button.disabled;
+}
 async function getQuote() {
     const apiUrl = 'https://sv443.net/jokeapi/v2/joke/Any';
     let quote = '';
@@ -84,15 +87,11 @@ async function getQuote() {
         const data = await response.json();
         if (data.setup) {
             quote = `${data.setup} --- ${data.delivery}`;
-            console.log(quote);
-            sayQuote(quote);
         } else {
             quote = data.joke;
-            console.log(quote);
-            sayQuote(quote);
         }
-        console.log(data)
-        sayQuote();
+        sayQuote(quote);
+        toggleBtn();
     } catch (error) {
         console.log(error);
     };
@@ -112,4 +111,5 @@ async function getQuote() {
     }
 }
 
-getQuote();
+button.addEventListener('click', getQuote);
+audioElement.addEventListener('ended', toggleBtn);
